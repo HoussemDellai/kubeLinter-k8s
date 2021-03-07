@@ -3,7 +3,9 @@ trigger:
 
 variables:
 - name: yaml_folder
-  value: $(System.DefaultWorkingDirectory)/ 
+  value: $(System.DefaultWorkingDirectory)/
+- name: chart_folder
+  value: $(System.DefaultWorkingDirectory)/helm-chart-sample/
 
 pool:
   vmImage: ubuntu-latest
@@ -12,8 +14,9 @@ steps:
 
 - script: |
       docker run -v /$(yaml_folder):/yaml stackrox/kube-linter lint /yaml
-  displayName: Run Static KubeLinter Code analysis for Kubernetes YAML manifest files 
+  displayName: Run Static KubeLinter Code analysis for Kubernetes YAML manifest files
+  continueOnError: true
 
 - script: |
-      docker run -v /$(yaml_folder):/yaml stackrox/kube-linter lint /yaml
-  displayName: Run KubeLinter Static Code analysis for Helm Chart 
+      docker run -v /$(chart_folder):/chart stackrox/kube-linter lint /chart
+  displayName: Run KubeLinter Static Code analysis for Helm Chart
