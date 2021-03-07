@@ -1,5 +1,7 @@
-trigger:
-- main
+pr:
+  branches:
+    include:
+      - main
 
 variables:
 - name: yaml_folder
