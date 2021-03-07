@@ -25,11 +25,17 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Scan yaml
-        id: kube-lint-scan
+      - name: Scan yaml using KubeLinter
         uses: stackrox/kube-linter-action@v1
         with:
           directory: .
+          # config: .kube-linter/config.yaml
+        continue-on-error: true
+        
+      - name: Scan Helm charts using KubeLinter
+        uses: stackrox/kube-linter-action@v1
+        with:
+          directory: helm-chart-sample/
           # config: .kube-linter/config.yaml
         continue-on-error: true
           
