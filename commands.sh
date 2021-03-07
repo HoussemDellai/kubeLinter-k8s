@@ -19,3 +19,6 @@ docker run -v /path/to/files/you/want/to/lint:/dir
 
 # KubeLinter list of checks: 
 # https://docs.kubelinter.io/#/generated/checks
+
+# KubeLinter uses a config file to customize the checks:
+# https://docs.kubelinter.io/#/configuring-kubelinter
