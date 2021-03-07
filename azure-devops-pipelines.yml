@@ -13,11 +13,11 @@ pool:
 steps:
 
 - script: |
-      docker run -v /k8s-yaml-sample:/yaml stackrox/kube-linter lint /yaml
+      docker run -v $(yaml_folder):/yaml stackrox/kube-linter lint /yaml
   displayName: Run Static KubeLinter Code analysis for Kubernetes YAML manifest files
   continueOnError: true
   
 - script: |
-      docker run -v /helm-chart-sample:/chart stackrox/kube-linter lint /chart
+      docker run -v $(chart_folder):/chart stackrox/kube-linter lint /chart
   displayName: Run KubeLinter Static Code analysis for Helm Chart
   continueOnError: true
