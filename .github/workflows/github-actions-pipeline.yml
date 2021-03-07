@@ -31,3 +31,5 @@ jobs:
         with:
           directory: .
           # config: .kube-linter/config.yaml
+        continue-on-error: true
+          
