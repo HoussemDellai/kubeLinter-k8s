@@ -1,0 +1,19 @@
+trigger:
+- main
+
+variables:
+- name: yaml_folder
+  value: $(System.DefaultWorkingDirectory)/ 
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+- script: |
+      docker run -v /$(yaml_folder):/yaml stackrox/kube-linter lint /yaml
+  displayName: Run Static KubeLinter Code analysis for Kubernetes YAML manifest files 
+
+- script: |
+      docker run -v /$(yaml_folder):/yaml stackrox/kube-linter lint /yaml
+  displayName: Run KubeLinter Static Code analysis for Helm Chart 
